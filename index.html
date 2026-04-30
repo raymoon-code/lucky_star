@@ -83,6 +83,34 @@
     z-index: 1;
   }
 
+.hero-logo-img {
+  max-width: 280px; /* Adjust size as needed */
+  height: auto;
+  border-radius: 50%; /* If your logo is circular */
+  
+  /* The "Pop" Effect */
+  filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.4)); /* Golden glow */
+  border: 2px solid var(--gold);
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.05); /* Subtle glass background */
+  
+  /* Entrance Animation */
+  animation: logoPop 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+@keyframes logoPop {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Make it breathe/attract attention */
+.hero-logo-img:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 35px rgba(255, 215, 0, 0.7));
+  transition: all 0.4s ease;
+}
+
+  
   .hero > * { position: relative; z-index: 2; }
 
   .hero-badge {
@@ -762,7 +790,7 @@
 <!-- ── HERO ── -->
 <section class="hero">
   <div class="hero-badge">Est. Joplin, Missouri</div>
-  <img src="https://drive.google.com/thumbnail?id=157ZpGEJOEjqVGRWXt36Vir5uZXmkQEBK&sz=s500" alt="Lucky Star Chinese Food Express" class="hero-logo-img"
+  <img src="https://drive.google.com/thumbnail?id=157ZpGEJOEjqVGRWXt36Vir5uZXmkQEBK&sz=s1200" alt="Lucky Star Chinese Food Express" class="hero-logo-img"
        onerror="this.style.display='none'; document.getElementById('hero-text-fallback').style.display='block'">
   <div id="hero-text-fallback" style="display:none;">
     <h1 class="hero-logo"><span>Lucky</span> Star</h1>
