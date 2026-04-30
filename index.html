@@ -123,7 +123,33 @@
     pointer-events: none;
     z-index: 1;
   }
-
+ /* ── LOCATION ── */
+    #location { background:var(--ink2); padding:6rem 4rem; }
+    .location-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:start; max-width:1100px; margin:0 auto; }
+    .hours-table { width:100%; }
+    .hours-row {
+      display:flex; justify-content:space-between; align-items:center;
+      padding:.8rem 0.5rem; border-bottom:1px solid rgba(212,160,23,.07);
+      font-family:var(--ui); font-size:.86rem; border-radius:2px; transition:all .2s;
+    }
+    .hours-row:hover { background:rgba(212,160,23,.04); padding-left:1rem; }
+    .hours-day { color:rgba(253,248,240,.5); font-weight:600; letter-spacing:.04em; }
+    .hours-time { color:var(--white); }
+    .hours-row.closed .hours-time { color:rgba(253,248,240,.25); }
+    .hours-row.today { background:rgba(212,160,23,.07); border-color:rgba(212,160,23,.25); padding-left:.75rem; }
+    .hours-row.today .hours-day { color:var(--gold); }
+    .hours-row.today .hours-time { color:var(--gold2); font-weight:600; }
+    .loc-cards { display:flex; flex-direction:column; gap:1.25rem; }
+    .loc-card {
+      display:flex; align-items:flex-start; gap:1.25rem; padding:1.5rem;
+      background:var(--ink3); border:1px solid rgba(212,160,23,.1); border-radius:3px; transition:border-color .25s;
+    }
+    .loc-card:hover { border-color:rgba(212,160,23,.35); }
+    .loc-icon { width:42px; height:42px; display:flex; align-items:center; justify-content:center; background:rgba(139,0,0,.3); border-radius:3px; font-size:1.4rem; flex-shrink:0; }
+    .loc-label { font-family:var(--display); font-size:.62rem; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); margin-bottom:.3rem; }
+    .loc-val { font-family:var(--ui); font-size:.85rem; color:rgba(253,248,240,.7); line-height:1.5; }
+    .loc-val a { color:var(--gold); transition:color .2s; }
+    .loc-val a:hover { color:var(--gold2); }
 .hero-logo-img {
   max-width: 280px; /* Adjust size as needed */
   height: auto;
@@ -1197,6 +1223,34 @@
 
   </div>
 </section>
+
+  <!-- LOCATION -->
+<section id="location">
+  <div class="location-grid">
+    <div>
+      <div class="sec-label reveal">When To Visit</div>
+      <h2 class="sec-title reveal rd1">Hours &amp; <span class="gold">Location</span></h2>
+      <div style="width:70px;height:2px;background:linear-gradient(90deg,var(--gold),transparent);margin:1.5rem 0 2.5rem" class="reveal rd2"></div>
+      <table class="hours-table reveal rd2">
+        <tr class="hours-row"><td class="hours-day">Monday</td><td class="hours-time">11AM – 9PM</td></tr>
+        <tr class="hours-row"><td class="hours-day">Tuesday</td><td class="hours-time">11AM – 9PM</td></tr>
+        <tr class="hours-row"><td class="hours-day">Wednesday</td><td class="hours-time">11AM – 9PM</td></tr>
+        <tr class="hours-row"><td class="hours-day">Thursday</td><td class="hours-time">11AM – 9PM</td></tr>
+        <tr class="hours-row"><td class="hours-day">Friday</td><td class="hours-time">11AM – 9PM</td></tr>
+        <tr class="hours-row"><td class="hours-day">Saturday</td><td class="hours-time">11AM – 9PM</td></tr>
+        <tr class="hours-row closed"><td class="hours-day">Sunday</td><td class="hours-time">Closed</td></tr>
+      </table>
+    </div>
+    <div class="loc-cards reveal rd3">
+      <div class="loc-card"><div class="loc-icon">📍</div><div><div class="loc-label">Address</div><div class="loc-val">842 S Rangeline Rd, Joplin, MO 64801<br><a href="https://maps.app.goo.gl/ftqaBdzu4vf1TAPKA" target="_blank">Get Directions →</a></div></div></div>
+      <div class="loc-card"><div class="loc-icon">📞</div><div><div class="loc-label">Phone</div><div class="loc-val"><a href="tel:4172085809">(417) 208-5809</a></div></div></div>
+      <div class="loc-card"><div class="loc-icon">🛍️</div><div><div class="loc-label">Order Online</div><div class="loc-val"><a href="https://www.toasttab.com/local/order/china-star-842-south-rangeline-road" target="_blank">Order via Toast →</a></div></div></div>
+      <div class="loc-card"><div class="loc-icon">🚗</div><div><div class="loc-label">Services</div><div class="loc-val">Dine In · Drive-Through · Take Out</div></div></div>
+    </div>
+  </div>
+</section>
+
+
 
 <!-- ── FOOTER ── -->
 <footer class="footer">
