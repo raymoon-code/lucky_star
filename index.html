@@ -123,121 +123,33 @@
     pointer-events: none;
     z-index: 1;
   }
-/* ── LOCATION SECTION ── */
-#location {
-  background: #220505; /* Slightly redder/lighter than the ink black above */
-  border-top: 1px solid rgba(255, 215, 0, 0.15); /* Subtile gold line */
-  margin-top: 4rem;
-}
-
-  /* Optional: Add a decorative element at the top center to "break" the line */
-#location::before {
-  content: '✦';
-  position: absolute;
-  top: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--ink); /* Matches the background of the section above */
-  color: var(--gold);
-  padding: 0 15px;
-  font-size: 1.2rem;
-}
-
-.location-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: start;
-}
-
-/* Hours Table Styling */
-.hours-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-family: 'Montserrat', sans-serif;
-}
-
-.hours-row td {
-  padding: 1rem 0;
-  border-bottom: 1px solid rgba(255, 215, 0, 0.1);
-}
-
-.hours-day {
-  font-weight: 500;
-  color: var(--cream);
-}
-
-.hours-time {
-  text-align: right;
-  color: var(--gold);
-  font-weight: 600;
-}
-
-.hours-row.closed .hours-time {
-  color: #ff4d4d; /* Red for closed */
-  opacity: 0.8;
-}
-
-/* Info Cards Styling */
-.loc-cards {
-  display: grid;
-  gap: 1.5rem;
-}
-
-.loc-card {
-  display: flex;
-  gap: 1.5rem;
-  padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 215, 0, 0.1);
-  border-radius: 8px;
-  transition: all 0.3s ease;
-}
-
-.loc-card:hover {
-  background: rgba(255, 215, 0, 0.05);
-  transform: translateX(10px);
-  border-color: var(--gold);
-}
-
-.loc-icon {
-  font-size: 1.5rem;
-}
-
-.loc-label {
-  font-size: 0.65rem;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--gold);
-  margin-bottom: 0.3rem;
-}
-
-.loc-val {
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: var(--cream);
-}
-
-.loc-val a {
-  color: var(--gold);
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.loc-val a:hover {
-  text-decoration: underline;
-}
-
-/* Responsive for Mobile */
-@media (max-width: 768px) {
-  .location-grid {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-}
-
-
-  
+ /* ── LOCATION ── */
+    #location { background:var(--ink2); padding:6rem 4rem; }
+    .location-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:start; max-width:1100px; margin:0 auto; }
+    .hours-table { width:100%; }
+    .hours-row {
+      display:flex; justify-content:space-between; align-items:center;
+      padding:.8rem 0.5rem; border-bottom:1px solid rgba(212,160,23,.07);
+      font-family:var(--ui); font-size:.86rem; border-radius:2px; transition:all .2s;
+    }
+    .hours-row:hover { background:rgba(212,160,23,.04); padding-left:1rem; }
+    .hours-day { color:rgba(253,248,240,.5); font-weight:600; letter-spacing:.04em; }
+    .hours-time { color:var(--white); }
+    .hours-row.closed .hours-time { color:rgba(253,248,240,.25); }
+    .hours-row.today { background:rgba(212,160,23,.07); border-color:rgba(212,160,23,.25); padding-left:.75rem; }
+    .hours-row.today .hours-day { color:var(--gold); }
+    .hours-row.today .hours-time { color:var(--gold2); font-weight:600; }
+    .loc-cards { display:flex; flex-direction:column; gap:1.25rem; }
+    .loc-card {
+      display:flex; align-items:flex-start; gap:1.25rem; padding:1.5rem;
+      background:var(--ink3); border:1px solid rgba(212,160,23,.1); border-radius:3px; transition:border-color .25s;
+    }
+    .loc-card:hover { border-color:rgba(212,160,23,.35); }
+    .loc-icon { width:42px; height:42px; display:flex; align-items:center; justify-content:center; background:rgba(139,0,0,.3); border-radius:3px; font-size:1.4rem; flex-shrink:0; }
+    .loc-label { font-family:var(--display); font-size:.62rem; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); margin-bottom:.3rem; }
+    .loc-val { font-family:var(--ui); font-size:.85rem; color:rgba(253,248,240,.7); line-height:1.5; }
+    .loc-val a { color:var(--gold); transition:color .2s; }
+    .loc-val a:hover { color:var(--gold2); }
 .hero-logo-img {
   max-width: 280px; /* Adjust size as needed */
   height: auto;
@@ -598,10 +510,10 @@
 
   /* ── FULL MENU TABLE ── */
   .full-menu-section {
-    padding: 8rem 2rem;
-  background: var(--ink);
-  max-width: 1400px;
-  margin: 0 auto;
+    background: 
+      linear-gradient(180deg, var(--ink) 0%, #1e0404 50%, var(--ink) 100%);
+    padding: 5rem 2rem;
+    position: relative;
   }
 
   /* Food steam/texture overlay on full menu */
@@ -625,10 +537,11 @@
   }
 
   .menu-columns {
-     display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 4rem;
-  align-items: start;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem 4rem;
   }
 
   .menu-category {
@@ -636,13 +549,14 @@
   }
 
   .menu-category-title {
-     font-family: 'Playfair Display', serif;
-  font-size: 1.6rem;
-  color: var(--gold);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.3rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 0.3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
   }
 
   .menu-category-title::after {
@@ -653,20 +567,20 @@
   }
 
   .menu-category-sub {
-      font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: 1rem;
-  color: var(--cream-dark);
-  opacity: 0.7;
-  margin-bottom: 1.5rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(212,175,55,0.5);
+    margin-bottom: 1.2rem;
   }
 
   .menu-item {
-  display: flex;
-  align-items: baseline;
-  margin-bottom: 0.8rem;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.95rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(212,175,55,0.08);
+    transition: background 0.2s;
   }
 
   .menu-item:hover {
@@ -675,35 +589,48 @@
   }
 
   .menu-item-num {
-     color: var(--gold);
-  font-weight: 700;
-  margin-right: 0.5rem;
-  width: 25px;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.75rem;
+    color: var(--gold);
+    opacity: 0.6;
+    min-width: 1.5rem;
+    font-style: italic;
   }
 
   .menu-item-name {
-  color: var(--cream);
-  white-space: nowrap;
+    flex: 1;
+    font-size: 0.9rem;
+    color: var(--cream);
+    font-weight: 400;
   }
 
   .menu-item-dots {
-    flex-grow: 1;
-  border-bottom: 1px dotted rgba(255, 215, 0, 0.3);
-  margin: 0 10px;
+    flex: 1;
+    border-bottom: 1px dotted rgba(212,175,55,0.2);
+    margin: 0 0.4rem;
+    position: relative;
+    top: -0.2rem;
   }
 
   .menu-item-price {
-     font-weight: 600;
-  color: var(--gold-light);
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    color: var(--gold);
+    font-weight: 600;
+    white-space: nowrap;
   }
 
   .price-badge {
-     font-size: 0.9rem;
-  font-family: 'Montserrat', sans-serif;
-  background: rgba(255, 215, 0, 0.1);
-  padding: 2px 8px;
-  border-radius: 4px;
-  color: var(--gold-light);
+    display: inline-block;
+    background: var(--gold);
+    color: var(--crimson-dark);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 900;
+    padding: 0.2rem 0.8rem;
+    border-radius: 3px;
+    margin-left: 0.5rem;
+    vertical-align: middle;
   }
 
   /* ── APPETIZERS SECTION ── */
@@ -734,23 +661,25 @@
   /* ── BEVERAGES ── */
   .bev-grid {
     display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 0.5rem;
   }
 
   .bev-chip {
-   font-size: 0.75rem;
-  padding: 0.4rem 1rem;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 215, 0, 0.2);
-  border-radius: 50px;
-  color: var(--cream-dark);
-  transition: all 0.3s ease;
+    font-size: 0.78rem;
+    color: var(--cream-dark);
+    border: 1px solid rgba(212,175,55,0.3);
+    padding: 0.3rem 0.9rem;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    transition: all 0.2s;
   }
 
   .bev-chip:hover {
-    background: var(--gold);
-  color: var(--crimson-deeper);
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(212,175,55,0.06);
   }
 
   /* ── FOOTER ── */
@@ -1295,7 +1224,13 @@
   </div>
 </section>
 
-  <!-- LOCATION -->
+
+
+
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+    <!-- LOCATION -->
 <section id="location">
   <div class="location-grid">
     <div>
@@ -1320,11 +1255,6 @@
     </div>
   </div>
 </section>
-
-
-
-<!-- ── FOOTER ── -->
-<footer class="footer">
   <div class="ornament">✦ ✦ ✦</div>
   <img src="https://drive.google.com/thumbnail?id=157ZpGEJOEjqVGRWXt36Vir5uZXmkQEBK&sz=s500" alt="Lucky Star Chinese Food Express" 
        style="width:min(320px,70vw); height:auto; margin:0 auto 0.5rem; display:block; filter:drop-shadow(0 4px 16px rgba(0,0,0,0.7));"
