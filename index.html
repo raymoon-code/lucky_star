@@ -115,6 +115,19 @@
     z-index: 0;
   }
 
+   /* ── BACK TOP ── */
+    #btop {
+      position:fixed; bottom:2rem; right:2rem; z-index:400;
+      width:44px; height:44px; background:var(--crimson);
+      border:1px solid rgba(212,160,23,.3); border-radius:3px;
+      display:flex; align-items:center; justify-content:center;
+      color:var(--gold); font-size:1rem; cursor:pointer;
+      opacity:0; pointer-events:none; transition:all .3s;
+      box-shadow:0 4px 20px rgba(139,0,0,.5);
+    }
+    #btop.visible { opacity:1; pointer-events:auto; }
+    #btop:hover { transform:translateY(-3px); background:var(--crimson2); }
+
   .hero::before {
     content: '';
     position: absolute;
@@ -974,7 +987,7 @@
 </style>
 </head>
 <body>
-
+<button id="btop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 <nav>
   <div class="nav-brand">
     <img src="https://drive.google.com/thumbnail?id=14LtOjS0StiF-hmOrlEquo8Cg1mP_BrS4&sz=s2000" alt="Lucky Star" 
@@ -1407,6 +1420,13 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
   }, { threshold: 0.15 });
   revealEls.forEach(el => revealObs.observe(el));
+
+   // Nav scroll
+  const nav=document.getElementById('nav');
+  window.addEventListener('scroll',()=>{
+    nav.classList.toggle('scrolled',scrollY>80);
+    document.getElementById('btop').classList.toggle('visible',scrollY>400);
+  });
 </script>
 </body>
 </html>
