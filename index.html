@@ -369,34 +369,46 @@
     border: 1px solid rgba(255,215,0,0.12);
   }
 
-  .dish-card {
-    position: relative;
-    aspect-ratio: 16/10;
-    overflow: hidden;
-    cursor: pointer;
-    background: var(--crimson-dark);
-  }
-
-  .dish-card  {
-   width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    display: block;
-  }
-
-  .dish-card  {
-  width: 100%;
-  height: 100%; /* Fills the container height */
-  object-fit: cover; /* Crops to fit without stretching */
-  display: block;
-  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+ .dish-card {
+  position: relative;
+  height: 250px; /* Fixed height for a perfect grid */
+  overflow: hidden;
+  background: var(--crimson-deeper);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.5rem;
+  transition: transform 0.3s ease;
 }
+
+  /* Dish Content (Title, Price, etc) */
+.dish-content {
+  position: relative;
+  z-index: 3;
+}
+
+
+
 
   .dish-card:hover  {
     transform: scale(1.08);
   }
-
+/* ── UPDATED MENU GRID STYLES ── */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1px; /* Creates thin borders between items */
+  background: rgba(255, 215, 0, 0.1); /* Subtle gold grid line color */
+  border: 1px solid rgba(255, 215, 0, 0.2);
+}
+  .dish-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
   .dish-overlay {
     position: absolute;
     inset: 0;
@@ -441,6 +453,26 @@
     color: var(--white);
     line-height: 1.2;
   }
+
+  .dish-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 0.2rem;
+}
+
+  /* Gradient overlay so text is readable over any image */
+.dish-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, 
+    rgba(30, 5, 5, 0.95) 10%, 
+    rgba(30, 5, 5, 0.4) 50%, 
+    rgba(30, 5, 5, 0.1) 100%);
+  z-index: 2;
+}
 
   .dish-desc {
     font-size: 0.72rem;
@@ -1048,7 +1080,7 @@
   </div>
 
   <div class="featured-grid" style="max-width:1400px; margin: 0 auto 0;">
-
+<div class="menu-grid">
     <!-- 1 Cashew Chicken -->
     <div class="dish-card">
       <img src="https://drive.google.com/thumbnail?id=10E3iwihYrf42cWMgkgF1U8OU6K2pphP1&sz=s2000">
@@ -1210,6 +1242,7 @@
 
   </div>
 </div>
+  </div>
 
 <!-- ── APPETIZERS ── -->
 <section class="appetizers-bg" id="appetizers">
