@@ -125,9 +125,23 @@
   }
 /* ── LOCATION SECTION ── */
 #location {
-  padding: 8rem 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  margin-top: -50px; /* Pulls it up slightly to overlap */
+  padding-top: 10rem;
+  background: #200505;
+  clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%);
+}
+
+  /* Optional: Add a decorative element at the top center to "break" the line */
+#location::before {
+  content: '✦';
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--ink); /* Matches the background of the section above */
+  color: var(--gold);
+  padding: 0 15px;
+  font-size: 1.2rem;
 }
 
 .location-grid {
