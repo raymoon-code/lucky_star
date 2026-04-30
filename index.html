@@ -383,8 +383,11 @@
 
   /* Dish Content (Title, Price, etc) */
 .dish-content {
-  position: relative;
+   position: relative;
   z-index: 3;
+  background: rgba(0, 0, 0, 0.6); /* Adds a small dark box behind just the text */
+  padding: 10px;
+  width: 100%;
 }
 
 
@@ -412,9 +415,10 @@
 
   .dish-image img {
   width: 100%;
-  height: 100%;
+  height: 250px;
   object-fit: cover; /* This stops the stretching/squishing */
   transition: transform 0.5s ease;
+  filter: brightness(1.1);
 }
   .dish-overlay {
     position: absolute;
