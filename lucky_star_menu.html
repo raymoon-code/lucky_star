@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lucky Star Chinese Food Express</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --crimson: #9B1B1B;
+    --crimson-dark: #6b0f0f;
+    --crimson-deeper: #3d0808;
+    --crimson-light: #c42020;
+    --red-logo: #8B1515;
+    --gold: #FFD700;
+    --gold-warm: #FFC200;
+    --gold-light: #ffe566;
+    --cream: #FFF8F0;
+    --cream-dark: #f5e8d5;
+    --ink: #1e0505;
+    --white: #ffffff;
+    --shadow: rgba(0,0,0,0.7);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--ink);
+    color: var(--cream);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: 
+      linear-gradient(to bottom, rgba(60,5,5,0.72) 0%, rgba(20,3,3,0.88) 100%),
+      url('https://images.unsplash.com/photo-1563245372-f21724e3856d?w=1800&q=80') center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Subtle fabric texture matching logo background */
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.03) 2px,
+        rgba(0,0,0,0.03) 4px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.03) 2px,
+        rgba(0,0,0,0.03) 4px
+      );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(139,21,21,0.3) 0%, rgba(0,0,0,0.6) 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .hero > * { position: relative; z-index: 2; }
+
+  .hero-badge {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    padding: 0.4rem 1.2rem;
+    margin-bottom: 1.8rem;
+    display: inline-block;
+    animation: fadeUp 0.8s ease both;
+    background: rgba(255,215,0,0.07);
+  }
+
+  /* Logo image replaces text */
+  .hero-logo-img {
+    width: min(560px, 85vw);
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    filter: drop-shadow(0 6px 40px rgba(0,0,0,0.9));
+    animation: fadeUp 0.8s 0.15s ease both;
+  }
+
+  /* Keep old .hero-logo for footer fallback */
+  .hero-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.5rem, 9vw, 7.5rem);
+    font-weight: 900;
+    line-height: 0.95;
+    color: var(--white);
+    text-shadow: 0 4px 40px rgba(0,0,0,0.8);
+    animation: fadeUp 0.8s 0.15s ease both;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-logo span {
+    color: var(--gold);
+  }
+
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+    font-style: italic;
+    color: var(--cream-dark);
+    margin-top: 0.8rem;
+    letter-spacing: 0.08em;
+    animation: fadeUp 0.8s 0.25s ease both;
+  }
+
+  .hero-divider {
+    width: 120px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    margin: 1.8rem auto;
+    animation: fadeUp 0.8s 0.35s ease both;
+  }
+
+  .hero-info {
+    display: flex;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    animation: fadeUp 0.8s 0.45s ease both;
+  }
+
+  .hero-info-item {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--cream-dark);
+    opacity: 0.9;
+  }
+
+  .hero-info-item strong {
+    display: block;
+    color: var(--gold);
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    text-transform: none;
+    font-weight: 700;
+    margin-bottom: 0.1rem;
+    text-shadow: 0 1px 8px rgba(255,215,0,0.4);
+  }
+
+  .scroll-cue {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    animation: fadeUp 1s 1s ease both;
+  }
+
+  .scroll-cue span {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.7;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  /* ── SPECIAL DEAL BANNER ── */
+  .deal-banner {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-warm) 40%, #e6a800 70%, var(--gold) 100%);
+    color: var(--crimson-dark);
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 -3px 0 rgba(0,0,0,0.2);
+  }
+
+  .deal-banner::before {
+    content: '✦ ✦ ✦';
+    position: absolute;
+    top: 50%;
+    left: 2rem;
+    transform: translateY(-50%);
+    opacity: 0.3;
+    font-size: 1.2rem;
+    letter-spacing: 0.5rem;
+  }
+
+  .deal-banner::after {
+    content: '✦ ✦ ✦';
+    position: absolute;
+    top: 50%;
+    right: 2rem;
+    transform: translateY(-50%);
+    opacity: 0.3;
+    font-size: 1.2rem;
+    letter-spacing: 0.5rem;
+  }
+
+  .deal-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .deal-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-style: italic;
+    margin-top: 0.3rem;
+    opacity: 0.85;
+  }
+
+  .deal-fine {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 0.4rem;
+    opacity: 0.7;
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section {
+    padding: 5rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  .section-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+    display: block;
+    text-shadow: 0 1px 8px rgba(255,215,0,0.3);
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.1;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.8);
+  }
+
+  .section-line {
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    margin: 1.2rem auto 0;
+  }
+
+  /* ── FEATURED DISHES (1-10) ── */
+  .featured-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5px;
+    background: rgba(255,215,0,0.12);
+    border: 1px solid rgba(255,215,0,0.12);
+  }
+
+  .dish-card {
+    position: relative;
+    aspect-ratio: 16/10;
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--crimson-dark);
+  }
+
+  .dish-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: block;
+  }
+
+  .dish-card:hover img {
+    transform: scale(1.08);
+  }
+
+  .dish-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10,3,3,0.92) 0%, rgba(10,3,3,0.3) 55%, transparent 100%);
+    transition: opacity 0.4s;
+  }
+
+  .dish-card:hover .dish-overlay {
+    background: linear-gradient(to top, rgba(10,3,3,0.96) 0%, rgba(10,3,3,0.5) 55%, rgba(139,26,26,0.15) 100%);
+  }
+
+  .dish-number {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    width: 2.4rem;
+    height: 2.4rem;
+    background: var(--gold);
+    color: var(--crimson-darker, #4a0808);
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 2px 16px rgba(255,215,0,0.55), 0 2px 8px rgba(0,0,0,0.5);
+  }
+
+  .dish-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.2rem 1.4rem;
+  }
+
+  .dish-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.2;
+  }
+
+  .dish-desc {
+    font-size: 0.72rem;
+    color: rgba(253,246,227,0.6);
+    letter-spacing: 0.04em;
+    margin-top: 0.25rem;
+    line-height: 1.5;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
+    opacity: 0;
+  }
+
+  .dish-card:hover .dish-desc {
+    max-height: 3rem;
+    opacity: 1;
+  }
+
+  .dish-price-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.6rem;
+  }
+
+  .dish-tag {
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.8;
+  }
+
+  .dish-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  /* ── FULL MENU TABLE ── */
+  .full-menu-section {
+    background: 
+      linear-gradient(180deg, var(--ink) 0%, #1e0404 50%, var(--ink) 100%);
+    padding: 5rem 2rem;
+    position: relative;
+  }
+
+  /* Food steam/texture overlay on full menu */
+  .full-menu-section::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      url('https://images.unsplash.com/photo-1563245372-f21724e3856d?w=1200&q=40') center/cover no-repeat;
+    opacity: 0.04;
+    pointer-events: none;
+  }
+
+  .full-menu-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    z-index: 1;
+  }
+
+  .menu-columns {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem 4rem;
+  }
+
+  .menu-category {
+    position: relative;
+  }
+
+  .menu-category-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 0.3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .menu-category-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, rgba(212,175,55,0.4), transparent);
+  }
+
+  .menu-category-sub {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(212,175,55,0.5);
+    margin-bottom: 1.2rem;
+  }
+
+  .menu-item {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(212,175,55,0.08);
+    transition: background 0.2s;
+  }
+
+  .menu-item:hover {
+    background: rgba(212,175,55,0.04);
+    padding-left: 0.3rem;
+  }
+
+  .menu-item-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.75rem;
+    color: var(--gold);
+    opacity: 0.6;
+    min-width: 1.5rem;
+    font-style: italic;
+  }
+
+  .menu-item-name {
+    flex: 1;
+    font-size: 0.9rem;
+    color: var(--cream);
+    font-weight: 400;
+  }
+
+  .menu-item-dots {
+    flex: 1;
+    border-bottom: 1px dotted rgba(212,175,55,0.2);
+    margin: 0 0.4rem;
+    position: relative;
+    top: -0.2rem;
+  }
+
+  .menu-item-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    color: var(--gold);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .price-badge {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--crimson-dark);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 900;
+    padding: 0.2rem 0.8rem;
+    border-radius: 3px;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+  }
+
+  /* ── APPETIZERS SECTION ── */
+  .appetizers-bg {
+    background: 
+      linear-gradient(to right, rgba(30,5,5,0.93) 0%, rgba(60,8,8,0.82) 40%, rgba(60,8,8,0.82) 60%, rgba(30,5,5,0.93) 100%),
+      url('https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=1600&q=80') center/cover no-repeat fixed;
+    padding: 5rem 2rem;
+    border-top: 2px solid rgba(255,215,0,0.2);
+    border-bottom: 2px solid rgba(255,215,0,0.2);
+    position: relative;
+  }
+
+  .appetizers-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 40px,
+      rgba(139,21,21,0.04) 40px,
+      rgba(139,21,21,0.04) 80px
+    );
+    pointer-events: none;
+  }
+
+  /* ── BEVERAGES ── */
+  .bev-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 0.5rem;
+  }
+
+  .bev-chip {
+    font-size: 0.78rem;
+    color: var(--cream-dark);
+    border: 1px solid rgba(212,175,55,0.3);
+    padding: 0.3rem 0.9rem;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    transition: all 0.2s;
+  }
+
+  .bev-chip:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(212,175,55,0.06);
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: linear-gradient(135deg, var(--red-logo) 0%, var(--crimson-dark) 60%, #3d0808 100%);
+    text-align: center;
+    padding: 3rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .footer::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+  }
+
+  /* Subtle fabric stripes matching logo bg */
+  .footer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 3px,
+      rgba(0,0,0,0.05) 3px,
+      rgba(0,0,0,0.05) 6px
+    );
+    pointer-events: none;
+  }
+
+  .footer > * { position: relative; z-index: 1; }
+
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--white);
+  }
+
+  .footer-logo span { color: var(--gold); }
+
+  .footer-address {
+    font-size: 0.8rem;
+    color: rgba(253,246,227,0.6);
+    margin-top: 0.8rem;
+    letter-spacing: 0.08em;
+  }
+
+  .footer-phone {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--gold);
+    margin-top: 0.5rem;
+  }
+
+  .footer-hours {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(253,246,227,0.4);
+    margin-top: 1.5rem;
+  }
+
+  /* ── ORNAMENTS ── */
+  .ornament {
+    text-align: center;
+    color: var(--gold);
+    opacity: 0.35;
+    font-size: 1.1rem;
+    letter-spacing: 0.8rem;
+    margin: 1rem 0;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.3); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .featured-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .hero-info { gap: 1.5rem; }
+    .deal-banner::before, .deal-banner::after { display: none; }
+  }
+
+  @media (max-width: 480px) {
+    .featured-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(60,8,8,0.92);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255,215,0,0.2);
+    padding: 0.8rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transform: translateY(-100%);
+    animation: slideDown 0.5s 1.5s ease forwards;
+  }
+
+  @keyframes slideDown {
+    to { transform: translateY(0); }
+  }
+
+  .nav-brand {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 1.1rem;
+    color: var(--white);
+  }
+
+  .nav-brand span { color: var(--gold); }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,248,240,0.65);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+  }
+
+  /* Image number 2 (Sweet & Sour), 7 (no label food photo) use unsplash fallback */
+  .dish-card[data-item="2"] { background: #3d1010; }
+  .no-img { background: linear-gradient(135deg, #3d1010, #200808); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">
+    <img src="1777520137133_image.png" alt="Lucky Star" 
+         style="height:36px; width:auto; display:block; filter:drop-shadow(0 1px 4px rgba(0,0,0,0.6));"
+         onerror="this.style.display='none'; document.getElementById('nav-text').style.display='block'">
+    <span id="nav-text" style="display:none;"><span style="color:var(--gold)">Lucky</span> Star</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#featured">Featured</a></li>
+    <li><a href="#chicken">Chicken</a></li>
+    <li><a href="#beef">Beef & Shrimp</a></li>
+    <li><a href="#rice">Rice & Noodles</a></li>
+    <li><a href="#appetizers">Appetizers</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-badge">Est. Joplin, Missouri</div>
+  <img src="1777520137133_image.png" alt="Lucky Star Chinese Food Express" class="hero-logo-img"
+       onerror="this.style.display='none'; document.getElementById('hero-text-fallback').style.display='block'">
+  <div id="hero-text-fallback" style="display:none;">
+    <h1 class="hero-logo"><span>Lucky</span> Star</h1>
+    <p class="hero-subtitle">Chinese Food Express</p>
+  </div>
+  <div class="hero-divider"></div>
+  <div class="hero-info">
+    <div class="hero-info-item">
+      <strong>(417) 208-5809</strong>
+      Call Ahead
+    </div>
+    <div class="hero-info-item">
+      <strong>842 S Rangeline Rd</strong>
+      Joplin, MO 64801
+    </div>
+    <div class="hero-info-item">
+      <strong>Dine In · Take Out</strong>
+      Available Daily
+    </div>
+  </div>
+  <div class="scroll-cue">
+    <div class="scroll-line"></div>
+    <span>Menu</span>
+  </div>
+</section>
+
+<!-- ── DEAL BANNER ── -->
+<div class="deal-banner">
+  <div class="deal-price">$9.99</div>
+  <div class="deal-desc">Combo Special — Items 1 through 10</div>
+  <div class="deal-fine">Includes (1) Eggroll or (2) Crab Rangoon &amp; Choice of Rice · Sub Lo Mein +$0.50 · 20 oz Fountain Drink Included</div>
+</div>
+
+<!-- ── FEATURED DISHES ── -->
+<div id="featured" style="background: linear-gradient(180deg, var(--ink) 0%, #1e0404 100%); padding-top: 5rem; position:relative;">
+  <!-- Faint food ghost image as background texture -->
+  <div style="position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?w=1200&q=30') center/cover no-repeat; opacity:0.04; pointer-events:none;"></div>
+  <div style="text-align:center; margin-bottom:3rem; padding: 0 2rem;">
+    <span class="section-label">House Specialties</span>
+    <h2 class="section-title">Signature Dishes</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="featured-grid" style="max-width:1400px; margin: 0 auto 0;">
+
+    <!-- 1 Cashew Chicken -->
+    <div class="dish-card">
+      <img src="make_it_4k_and_delicious_202604292208.jpeg" alt="Cashew Chicken"
+           onerror="this.src='https://images.unsplash.com/photo-1563245372-f21724e3856d?w=800&q=80'">
+      <div class="dish-overlay"></div>
+      <div class="dish-number">1</div>
+      <div class="dish-info">
+        <div class="dish-name">Cashew Chicken</div>
+        <div class="dish-desc">Crispy chicken tossed with roasted cashews in a savory brown sauce over steamed rice</div>
+        <div class="dish-price-row">
+          <span class="dish-tag">Combo Special</span>
+          <span class="dish-price">$9.99</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 Sweet & Sour Chicken -->
+    <div class="dish-card">
+      <img src="make_this_delicious_and_4k_202604292210.jpeg" alt="Sweet & Sour Chicken"
+           onerror="this.src='https://images.unsplash.com/photo-1562802378-063ec186a863?w=800&q=80'">
+      <div class="dish-overlay"></div>
+      <div class="dish-number">2</div>
+      <div class="dish-info">
+        <div class="dish-name">Sweet &amp; Sour Chicken</div>
+        <div class="dish-desc">Golden-fried chicken in a vibrant sweet and tangy sauce with pineapple and peppers</div>
+        <div class="dish-price-row">
+          <span class="dish-tag">Combo Special</span>
+          <span class="dish-price">$9.99</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 Lemon Chicken -->
+    <div class="dish-card">
+      <img src="make_it_4k_and_delicious_202604292209.jpeg" alt="Lemon Chicken"
+           onerror="this.src='https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=800&q=80'">
+      <div class="dish-overlay"></div>
+      <div class="dish-number">3</div>
+      <div class="dish-info">
+        <div class="dish-name">Lemon Chicken</div>
+        <div class="dish-desc">Crispy chicken bathed in a bright, zesty lemon glaze with herbs and sesame</div>
+        <div class="dish-price-row">
+          <span class="dish-tag">Combo Special</span>
+          <span class="dish-price">$9.99</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 General Chicken -->
+    <div class="dish-card">
+      <img src="make_it_4k_and_delicious_202604292209__1_.jpeg" alt="General Chicken"
+           onerror="this.src='https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?w=800&q=80'">
+      <div class="dish-overlay"></div>
+      <div class="dish-number">4</div>
+      <div class="dish-info">
+        <div class="dish-name">General Chicken</div>
+        <div class="dish-desc">Bold, smoky-sweet fried chicken with dried chiles, sesame, and scallions</div>
+        <div class="dish-price-row">
+          <span class="dish-tag">Combo Special</span>
+          <span class="dish-price">$9.99</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 Orange Chicken -->
+    <div class="dish-card">
+      <img src="make_it_4k_and_delicious_202604292209__2_.jpeg" alt="Orange Chicken"
+           onerror="this.src='https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=800&q=80'">
+      <div class="dish-overlay"></div>
+      <div class="dish-number">5</div>
+      <div class="dish-info">
+        <div class="dish-name">Orange Chicken</div>
+        <div class="dish-desc">Crispy bites glazed in citrusy orange sauce with black sesame and fresh scallion ribbons</div>
+        <div class="dish-price-row">
+          <span class="dish-tag">Combo Special</span>
+          <span class="dish-price">$9.99</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6 Honey Chicken -->
+    <div class="dish-card">
+      <img src="make_it_4k_and_delicious_202604292208__1_.jpeg" alt="Honey Chicken"
+           onerror="this.src='https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?w=800&q=80'">
+      <div class="dish-overlay"></div>
+      <div class="dish-number">6</div>
+      <div class="dish-info">
+        <div class="dish-name">Honey Chicken</div>
+        <div class="dish-desc">Crispy chicken coated in golden honey glaze with sesame seeds and fresh scallions</div>
+        <div class="dish-price-row">
+          <span class="dish-tag">Combo Special</span>
+          <span class="dish-price">$9.99</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7 Hunan Chicken -->
+    <div class="dish-card">
+      <img src="make_it_4k_and_delicious_202604292208__2_.jpeg" alt="Hunan Chicken"
+           onerror="this.src='https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=800&q=80'">
+      <div class="dish-overlay"></div>
+      <div class="dish-number">7</div>
+      <div class="dish-info">
+        <div class="dish-name">Hunan Chicken</div>
+        <div class="dish-desc">Wok-seared chicken with broccoli, red peppers, and onions in a rich savory Hunan sauce</div>
+        <div class="dish-price-row">
+          <span class="dish-tag">Combo Special</span>
+          <span class="dish-price">$9.99</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8 Beef Broccoli -->
+    <div class="dish-card">
+      <img src="4k_and_delicious_2K_202604292213.jpeg" alt="Beef Broccoli"
+           onerror="this.src='https://images.unsplash.com/photo-1609167830220-7164aa360951?w=800&q=80'">
+      <div class="dish-overlay"></div>
+      <div class="dish-number">8</div>
+      <div class="dish-info">
+        <div class="dish-name">Beef Broccoli</div>
+        <div class="dish-desc">Tender beef and vibrant broccoli wok-tossed in a deep, savory oyster-soy sauce</div>
+        <div class="dish-price-row">
+          <span class="dish-tag">Combo Special</span>
+          <span class="dish-price">$9.99</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9 Spicy Chicken -->
+    <div class="dish-card">
+      <img src="4k_and_delicious_on_the_202604292216.jpeg" alt="Spicy Chicken"
+           onerror="this.src='https://images.unsplash.com/photo-1527477396000-e27163b481c2?w=800&q=80'">
+      <div class="dish-overlay"></div>
+      <div class="dish-number">9</div>
+      <div class="dish-info">
+        <div class="dish-name">Spicy Chicken</div>
+        <div class="dish-desc">Fiery fried chicken with crispy shallots, dual sesame, and bold heat in every bite</div>
+        <div class="dish-price-row">
+          <span class="dish-tag">Combo Special</span>
+          <span class="dish-price">$9.99</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10 Mongolian Chicken -->
+    <div class="dish-card">
+      <img src="4k_delicious_on_the_plate_202604292212.jpeg" alt="Mongolian Chicken"
+           onerror="this.src='https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=800&q=80'">
+      <div class="dish-overlay"></div>
+      <div class="dish-number">10</div>
+      <div class="dish-info">
+        <div class="dish-name">Mongolian Chicken</div>
+        <div class="dish-desc">Wok-kissed chicken with dried chiles, garlic, and scallions in a deep Mongolian glaze</div>
+        <div class="dish-price-row">
+          <span class="dish-tag">Combo Special</span>
+          <span class="dish-price">$9.99</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── APPETIZERS ── -->
+<section class="appetizers-bg" id="appetizers">
+  <div style="max-width:1400px; margin: 0 auto;">
+    <div class="section-header">
+      <span class="section-label">To Start</span>
+      <h2 class="section-title">Appetizers</h2>
+      <div class="section-line"></div>
+    </div>
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.5rem; max-width: 900px; margin: 0 auto;">
+      <div class="menu-item">
+        <span class="menu-item-name">Eggroll (2)</span>
+        <span class="menu-item-dots"></span>
+        <span class="menu-item-price">$3.49</span>
+      </div>
+      <div class="menu-item">
+        <span class="menu-item-name">Vegetarian Eggroll (2)</span>
+        <span class="menu-item-dots"></span>
+        <span class="menu-item-price">$3.49</span>
+      </div>
+      <div class="menu-item">
+        <span class="menu-item-name">Crab Rangoons (3)</span>
+        <span class="menu-item-dots"></span>
+        <span class="menu-item-price">$3.49</span>
+      </div>
+      <div class="menu-item">
+        <span class="menu-item-name">Crab Rangoons (6)</span>
+        <span class="menu-item-dots"></span>
+        <span class="menu-item-price">$5.49</span>
+      </div>
+      <div class="menu-item">
+        <span class="menu-item-name">Butterfly Shrimp (4)</span>
+        <span class="menu-item-dots"></span>
+        <span class="menu-item-price">$5.69</span>
+      </div>
+      <div class="menu-item">
+        <span class="menu-item-name">Cheese Buns (4)</span>
+        <span class="menu-item-dots"></span>
+        <span class="menu-item-price">$3.99</span>
+      </div>
+      <div class="menu-item">
+        <span class="menu-item-name">Dumplings (6)</span>
+        <span class="menu-item-dots"></span>
+        <span class="menu-item-price">$2.99</span>
+      </div>
+      <div class="menu-item">
+        <span class="menu-item-name">Fried Rice (side)</span>
+        <span class="menu-item-dots"></span>
+        <span class="menu-item-price">$2.50</span>
+      </div>
+      <div class="menu-item">
+        <span class="menu-item-name">Egg Drop Soup</span>
+        <span class="menu-item-dots"></span>
+        <span class="menu-item-price">$3.49</span>
+      </div>
+      <div class="menu-item">
+        <span class="menu-item-name">Hot &amp; Sour Soup</span>
+        <span class="menu-item-dots"></span>
+        <span class="menu-item-price">$3.49</span>
+      </div>
+    </div>
+    <p style="text-align:center; font-size:0.68rem; letter-spacing:0.12em; text-transform:uppercase; color:rgba(212,175,55,0.5); margin-top:2rem;">
+      Items 11–29: 26 oz entrée + choice of fried or steamed rice · Sub Lo Mein +$1.00
+    </p>
+  </div>
+</section>
+
+<!-- ── FULL MENU ── -->
+<section class="full-menu-section" id="chicken">
+  <div style="text-align:center; margin-bottom:3.5rem;">
+    <span class="section-label">Complete Selection</span>
+    <h2 class="section-title">Full Menu</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="menu-columns">
+
+    <!-- Chicken Dishes -->
+    <div class="menu-category">
+      <div class="menu-category-title">Chicken Dishes <span class="price-badge">$10.99</span></div>
+      <div class="menu-category-sub">Served with steamed or fried rice</div>
+      <div class="menu-item"><span class="menu-item-num">11.</span><span class="menu-item-name">Broccoli Chicken</span><span class="menu-item-dots"></span><span class="menu-item-price">$10.99</span></div>
+      <div class="menu-item"><span class="menu-item-num">12.</span><span class="menu-item-name">Kung Pao Chicken</span><span class="menu-item-dots"></span><span class="menu-item-price">$10.99</span></div>
+      <div class="menu-item"><span class="menu-item-num">13.</span><span class="menu-item-name">General Chicken</span><span class="menu-item-dots"></span><span class="menu-item-price">$10.99</span></div>
+      <div class="menu-item"><span class="menu-item-num">14.</span><span class="menu-item-name">Orange Chicken</span><span class="menu-item-dots"></span><span class="menu-item-price">$10.99</span></div>
+      <div class="menu-item"><span class="menu-item-num">15.</span><span class="menu-item-name">Lemon Chicken</span><span class="menu-item-dots"></span><span class="menu-item-price">$10.99</span></div>
+      <div class="menu-item"><span class="menu-item-num">16.</span><span class="menu-item-name">Hunan Chicken</span><span class="menu-item-dots"></span><span class="menu-item-price">$10.99</span></div>
+      <div class="menu-item"><span class="menu-item-num">17.</span><span class="menu-item-name">Moo Goo Pai Gan</span><span class="menu-item-dots"></span><span class="menu-item-price">$10.99</span></div>
+      <div class="menu-item"><span class="menu-item-num">18.</span><span class="menu-item-name">Mongolian Chicken</span><span class="menu-item-dots"></span><span class="menu-item-price">$10.99</span></div>
+      <div class="menu-item"><span class="menu-item-num">19.</span><span class="menu-item-name">Cashew Chicken</span><span class="menu-item-dots"></span><span class="menu-item-price">$10.99</span></div>
+      <div class="menu-item"><span class="menu-item-num">20.</span><span class="menu-item-name">Sweet &amp; Sour Chicken</span><span class="menu-item-dots"></span><span class="menu-item-price">$10.99</span></div>
+      <div class="menu-item"><span class="menu-item-num">21.</span><span class="menu-item-name">Sesame Chicken</span><span class="menu-item-dots"></span><span class="menu-item-price">$10.99</span></div>
+      <div class="menu-item"><span class="menu-item-num">22.</span><span class="menu-item-name">Honey Chicken</span><span class="menu-item-dots"></span><span class="menu-item-price">$10.99</span></div>
+    </div>
+
+    <!-- Beef Dishes -->
+    <div class="menu-category" id="beef">
+      <div class="menu-category-title">Beef Dishes <span class="price-badge">$10.99</span></div>
+      <div class="menu-category-sub">Tender cuts, wok-seared to perfection</div>
+      <div class="menu-item"><span class="menu-item-num">23.</span><span class="menu-item-name">Green Pepper Steak</span><span class="menu-item-dots"></span><span class="menu-item-price">$10.99</span></div>
+      <div class="menu-item"><span class="menu-item-num">24.</span><span class="menu-item-name">Beef Broccoli</span><span class="menu-item-dots"></span><span class="menu-item-price">$10.99</span></div>
+      <div class="menu-item"><span class="menu-item-num">25.</span><span class="menu-item-name">Hunan Beef</span><span class="menu-item-dots"></span><span class="menu-item-price">$10.99</span></div>
+      <div class="menu-item"><span class="menu-item-num">26.</span><span class="menu-item-name">Mongolian Beef</span><span class="menu-item-dots"></span><span class="menu-item-price">$10.99</span></div>
+
+      <div style="margin-top: 2.5rem;">
+        <div class="menu-category-title">Shrimp Dishes <span class="price-badge">$10.99</span></div>
+        <div class="menu-category-sub">Fresh shrimp, expertly prepared</div>
+        <div class="menu-item"><span class="menu-item-num">27.</span><span class="menu-item-name">Shrimp Garlic</span><span class="menu-item-dots"></span><span class="menu-item-price">$10.99</span></div>
+        <div class="menu-item"><span class="menu-item-num">28.</span><span class="menu-item-name">Hunan Shrimp</span><span class="menu-item-dots"></span><span class="menu-item-price">$10.99</span></div>
+        <div class="menu-item"><span class="menu-item-num">29.</span><span class="menu-item-name">Happy Family</span><span class="menu-item-dots"></span><span class="menu-item-price">$10.99</span></div>
+      </div>
+    </div>
+
+    <!-- Rice & Noodles -->
+    <div class="menu-category" id="rice">
+      <div class="menu-category-title">Fried Rice <span class="price-badge">$10.99</span></div>
+      <div class="menu-category-sub">Wok-fried with egg and scallions</div>
+      <div class="menu-item"><span class="menu-item-num">30.</span><span class="menu-item-name">Chicken Fried Rice</span><span class="menu-item-dots"></span><span class="menu-item-price">$10.99</span></div>
+      <div class="menu-item"><span class="menu-item-num">31.</span><span class="menu-item-name">Beef Fried Rice</span><span class="menu-item-dots"></span><span class="menu-item-price">$10.99</span></div>
+      <div class="menu-item"><span class="menu-item-num">32.</span><span class="menu-item-name">Shrimp Fried Rice</span><span class="menu-item-dots"></span><span class="menu-item-price">$10.99</span></div>
+      <div class="menu-item"><span class="menu-item-num">33.</span><span class="menu-item-name">Combo Fried Rice</span><span class="menu-item-dots"></span><span class="menu-item-price">$11.99</span></div>
+
+      <div style="margin-top: 2.5rem;">
+        <div class="menu-category-title">Lo Mein <span class="price-badge">$10.99</span></div>
+        <div class="menu-category-sub">Soft egg noodles tossed in savory sauce</div>
+        <div class="menu-item"><span class="menu-item-num">34.</span><span class="menu-item-name">Chicken Lo Mein</span><span class="menu-item-dots"></span><span class="menu-item-price">$10.99</span></div>
+        <div class="menu-item"><span class="menu-item-num">35.</span><span class="menu-item-name">Beef Lo Mein</span><span class="menu-item-dots"></span><span class="menu-item-price">$10.99</span></div>
+        <div class="menu-item"><span class="menu-item-num">36.</span><span class="menu-item-name">Shrimp Lo Mein</span><span class="menu-item-dots"></span><span class="menu-item-price">$10.99</span></div>
+        <div class="menu-item"><span class="menu-item-num">37.</span><span class="menu-item-name">Combo Lo Mein</span><span class="menu-item-dots"></span><span class="menu-item-price">$11.99</span></div>
+      </div>
+
+      <!-- Beverages -->
+      <div style="margin-top: 2.5rem;">
+        <div class="menu-category-title">32 oz Beverages</div>
+        <div class="menu-category-sub">Fountain drinks · $2.99</div>
+        <div class="bev-grid">
+          <span class="bev-chip">Pepsi</span>
+          <span class="bev-chip">Diet Pepsi</span>
+          <span class="bev-chip">Mountain Dew</span>
+          <span class="bev-chip">Sierra Mist</span>
+          <span class="bev-chip">Crush</span>
+          <span class="bev-chip">Dr. Pepper</span>
+          <span class="bev-chip">Diet Dr. Pepper</span>
+          <span class="bev-chip">Iced Tea</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <div class="ornament">✦ ✦ ✦</div>
+  <img src="1777520137133_image.png" alt="Lucky Star Chinese Food Express" 
+       style="width:min(320px,70vw); height:auto; margin:0 auto 0.5rem; display:block; filter:drop-shadow(0 4px 16px rgba(0,0,0,0.7));"
+       onerror="this.style.display='none'">
+  <div class="footer-phone">(417) 208-5809</div>
+  <div class="footer-address">842 S Rangeline Rd · Joplin, MO 64801</div>
+  <div class="footer-hours">Dine In · Take Out · Call Ahead Welcome</div>
+  <div class="ornament" style="margin-top:1.5rem;">✦ ✦ ✦</div>
+</footer>
+
+</body>
+</html>
