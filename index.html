@@ -125,10 +125,9 @@
   }
 /* ── LOCATION SECTION ── */
 #location {
-  margin-top: -50px; /* Pulls it up slightly to overlap */
-  padding-top: 10rem;
-  background: #200505;
-  clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%);
+  background: #220505; /* Slightly redder/lighter than the ink black above */
+  border-top: 1px solid rgba(255, 215, 0, 0.15); /* Subtile gold line */
+  margin-top: 4rem;
 }
 
   /* Optional: Add a decorative element at the top center to "break" the line */
@@ -599,10 +598,10 @@
 
   /* ── FULL MENU TABLE ── */
   .full-menu-section {
-    background: 
-      linear-gradient(180deg, var(--ink) 0%, #1e0404 50%, var(--ink) 100%);
-    padding: 5rem 2rem;
-    position: relative;
+    padding: 8rem 2rem;
+  background: var(--ink);
+  max-width: 1400px;
+  margin: 0 auto;
   }
 
   /* Food steam/texture overlay on full menu */
@@ -626,11 +625,10 @@
   }
 
   .menu-columns {
-    max-width: 1400px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 3rem 4rem;
+     display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 4rem;
+  align-items: start;
   }
 
   .menu-category {
@@ -638,14 +636,13 @@
   }
 
   .menu-category-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--gold);
-    margin-bottom: 0.3rem;
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
+     font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  color: var(--gold);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.3rem;
   }
 
   .menu-category-title::after {
@@ -656,20 +653,20 @@
   }
 
   .menu-category-sub {
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(212,175,55,0.5);
-    margin-bottom: 1.2rem;
+      font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--cream-dark);
+  opacity: 0.7;
+  margin-bottom: 1.5rem;
   }
 
   .menu-item {
-    display: flex;
-    align-items: baseline;
-    gap: 0.5rem;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid rgba(212,175,55,0.08);
-    transition: background 0.2s;
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 0.8rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95rem;
   }
 
   .menu-item:hover {
@@ -678,48 +675,35 @@
   }
 
   .menu-item-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 0.75rem;
-    color: var(--gold);
-    opacity: 0.6;
-    min-width: 1.5rem;
-    font-style: italic;
+     color: var(--gold);
+  font-weight: 700;
+  margin-right: 0.5rem;
+  width: 25px;
   }
 
   .menu-item-name {
-    flex: 1;
-    font-size: 0.9rem;
-    color: var(--cream);
-    font-weight: 400;
+  color: var(--cream);
+  white-space: nowrap;
   }
 
   .menu-item-dots {
-    flex: 1;
-    border-bottom: 1px dotted rgba(212,175,55,0.2);
-    margin: 0 0.4rem;
-    position: relative;
-    top: -0.2rem;
+    flex-grow: 1;
+  border-bottom: 1px dotted rgba(255, 215, 0, 0.3);
+  margin: 0 10px;
   }
 
   .menu-item-price {
-    font-family: 'Playfair Display', serif;
-    font-size: 0.95rem;
-    color: var(--gold);
-    font-weight: 600;
-    white-space: nowrap;
+     font-weight: 600;
+  color: var(--gold-light);
   }
 
   .price-badge {
-    display: inline-block;
-    background: var(--gold);
-    color: var(--crimson-dark);
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    font-weight: 900;
-    padding: 0.2rem 0.8rem;
-    border-radius: 3px;
-    margin-left: 0.5rem;
-    vertical-align: middle;
+     font-size: 0.9rem;
+  font-family: 'Montserrat', sans-serif;
+  background: rgba(255, 215, 0, 0.1);
+  padding: 2px 8px;
+  border-radius: 4px;
+  color: var(--gold-light);
   }
 
   /* ── APPETIZERS SECTION ── */
@@ -750,25 +734,23 @@
   /* ── BEVERAGES ── */
   .bev-grid {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.8rem;
-    margin-top: 0.5rem;
+  flex-wrap: wrap;
+  gap: 0.6rem;
   }
 
   .bev-chip {
-    font-size: 0.78rem;
-    color: var(--cream-dark);
-    border: 1px solid rgba(212,175,55,0.3);
-    padding: 0.3rem 0.9rem;
-    border-radius: 20px;
-    letter-spacing: 0.05em;
-    transition: all 0.2s;
+   font-size: 0.75rem;
+  padding: 0.4rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  border-radius: 50px;
+  color: var(--cream-dark);
+  transition: all 0.3s ease;
   }
 
   .bev-chip:hover {
-    border-color: var(--gold);
-    color: var(--gold);
-    background: rgba(212,175,55,0.06);
+    background: var(--gold);
+  color: var(--crimson-deeper);
   }
 
   /* ── FOOTER ── */
