@@ -409,6 +409,13 @@
   height: 100%;
   z-index: 1;
 }
+
+  .dish-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* This stops the stretching/squishing */
+  transition: transform 0.5s ease;
+}
   .dish-overlay {
     position: absolute;
     inset: 0;
@@ -1080,7 +1087,7 @@
   </div>
 
   <div class="featured-grid" style="max-width:1400px; margin: 0 auto 0;">
-<div class="menu-grid">
+
     <!-- 1 Cashew Chicken -->
     <div class="dish-card">
       <img src="https://drive.google.com/thumbnail?id=10E3iwihYrf42cWMgkgF1U8OU6K2pphP1&sz=s2000">
@@ -1242,7 +1249,7 @@
 
   </div>
 </div>
-  </div>
+ 
 
 <!-- ── APPETIZERS ── -->
 <section class="appetizers-bg" id="appetizers">
