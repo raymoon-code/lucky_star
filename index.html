@@ -310,11 +310,20 @@
 
   .dish-card  {
     width: 100%;
-    height: 100%;
+    height: 250px;
+    overflow: hidden;
     object-fit: cover;
     transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     display: block;
   }
+
+  .dish-card img {
+  width: 100%;
+  height: 100%; /* Fills the container height */
+  object-fit: cover; /* Crops to fit without stretching */
+  display: block;
+  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
 
   .dish-card:hover  {
     transform: scale(1.08);
